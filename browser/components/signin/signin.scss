@@ -1,0 +1,32 @@
+.signin-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	> * {
+		width: 33%;
+	}
+	.local {
+		max-width: 18em;
+		text-align: left;
+	}
+	.or {
+		max-width: 10em;
+	}
+	.oauth {
+		max-width: 18em;
+	}
+	.btn-social {
+		text-align: center;
+		width: 100%;
+	}
+	min-width: -webkit-min-content;
+}
+
+@media (max-width: 600px) {
+	.signin-container {
+		flex-direction: column;
+		> * {
+			width: 100%;
+		}
+	}
+}

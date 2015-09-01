@@ -1,0 +1,20 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+$footer-height: 60px;
+
+body {
+	padding-bottom: $footer-height + 50px;
+	min-height: 100vh;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: $footer-height;
+	background-color: #f8f8f8;
+	border-top: 1px dotted #777;
+}

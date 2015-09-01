@@ -1,0 +1,23 @@
+[contenteditable] {
+	line-height: 1.4em;
+}
+
+[contenteditable]:empty::before {
+	content: attr(placeholder);
+	color: #aaa;
+	cursor: text;
+}
+
+[contenteditable]:empty:hover::before {
+	color: #bbb;
+}
+
+.form-like[contenteditable] {
+	border-bottom: 1px dashed #000;
+	&:focus {
+		border-color: transparent;
+	}
+	&[contenteditable="false"] {
+		border-color: transparent;
+	}
+}

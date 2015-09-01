@@ -1,0 +1,41 @@
+$arrow-width: 0.8em;
+
+.navbar {
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px dotted #777;
+	.navbar-nav .active > a {
+		background: transparent;
+		position: relative;
+		&:hover, &:focus {
+			background: transparent;
+		}
+		&::before {
+			position: absolute;
+			bottom: 0;
+			content: '';
+			left: calc(50% - #{$arrow-width});
+			border-bottom: $arrow-width * 0.75 solid #555;
+			border-right: $arrow-width solid transparent;
+			border-left: $arrow-width solid transparent
+		}
+	}
+	.navbar-brand {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		img {
+			height: 100%;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.navbar .navbar-nav .active > a::before {
+		left: 0;
+		bottom: calc(50% - #{$arrow-width});
+		border-left: $arrow-width * 0.75 solid #555;
+		border-bottom: $arrow-width solid transparent;
+		border-top: $arrow-width solid transparent;
+		border-right: none;
+	}
+}

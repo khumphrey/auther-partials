@@ -1,0 +1,23 @@
+.user-list {
+	display: flex;
+	flex-wrap: wrap;
+	> * {
+		flex: 1;
+	}
+}
+
+.user-query {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	> * {
+		flex: 1;
+	}
+}
+
+.user-list, .user-query {
+	.list-group-item {
+		border-radius: 4px;
+		margin: 0;
+	}
+}

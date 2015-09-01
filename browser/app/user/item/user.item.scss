@@ -1,0 +1,36 @@
+user-item {
+	* {
+		white-space: nowrap;
+	}
+
+	.icon-container {
+		position: relative;
+		
+		.glyphicon {
+			font-size: 40px;
+			padding: 20px;
+			border-radius: 50%;
+		}
+
+		.glyphicon.clickable {
+			background-color: #f0ad4e;
+			color: #fff;
+			&:hover {
+				background-color: darken(#f0ad4e, 5%);
+			}
+		}
+
+		img {
+			width: 80px;
+		}
+	}
+
+	.media-heading {
+		margin-top: 3px;
+	}
+}
+
+.toggleable:hover {
+	opacity: 0.5;
+	cursor: pointer;
+}
