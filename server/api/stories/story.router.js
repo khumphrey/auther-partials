@@ -18,8 +18,8 @@ router.param('id', function (req, res, next, id) {
 
 router.get('/', function (req, res, next) {
 	Story.find({}).populate('author').exec()
-	.then(function (storys) {
-		res.json(storys);
+	.then(function (stories) {
+		res.json(stories);
 	})
 	.then(null, next);
 });
