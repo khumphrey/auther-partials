@@ -1,4 +1,4 @@
-'use strict'; 
+'use strict';
 
 var mongoose = require('mongoose'),
 	shortid = require('shortid'),
@@ -25,24 +25,6 @@ var User = new mongoose.Schema({
 		unique: true
 	},
 	password: String,
-	google: {
-		id: String,
-		name: String,
-		email: String,
-		token: String
-	},
-	twitter: {
-		id: String,
-		name: String,
-		email: String,
-		token: String
-	},
-	github: {
-		id: String,
-		name: String,
-		email: String,
-		token: String
-	},
 	isAdmin: {
 		type: Boolean,
 		default: false
