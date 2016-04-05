@@ -1,6 +1,6 @@
 # auther
 
-After cloning or downloading, don't forget to install with `npm install` as well as `bower install`.
+After cloning or downloading, don't forget to install with `npm install`, which should automatically `bower install` too.
 
 Once you've ensured that `mongod` is running (e.g. by trying to start a `mongo` shell), you can execute `npm run seed` to seed the database with fake data.
 
