@@ -1,8 +1,8 @@
 'use strict';
 
-var express = require('express'),
-	router = express.Router(),
-	path = require('path');
+var express = require('express');
+var router = express.Router();
+var path = require('path');
 
 var rootPath = path.join(__dirname, '..', '..');
 

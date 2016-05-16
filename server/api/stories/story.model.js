@@ -1,31 +1,16 @@
 'use strict'; 
 
-var mongoose = require('mongoose'),
-	shortid = require('shortid');
+var Sequelize = require('sequelize');
 
-var db = require('../../db');
+var db = require('../../_db');
 
-var Story = new mongoose.Schema({
-	_id: {
-		type: String,
-		unique: true,
-		default: shortid.generate
-	},
-	__v: {
-		type: Number,
-		select: false
-	},
-	author: {
-		type: String,
-		ref: 'User',
-		required: true
-	},
-	title: {
-		type: String,
-		required: true,
-		unique: true
-	},
-	paragraphs: [String]
+var Story = db.define('story', {
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true
+  },
+  paragraphs: Sequelize.ARRAY(Sequelize.TEXT)
 });
 
-module.exports = db.model('Story', Story);
+module.exports = Story;

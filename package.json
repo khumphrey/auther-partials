@@ -6,17 +6,18 @@
   "scripts": {
     "start": "nodemon --watch server",
     "preinstall": "bower install",
-    "seed": "node seed"
+    "seed": "node seed",
+    "db-init": "./db-init.sh",
+    "postinstall": "npm run db-init"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bluebird": "^2.10.2",
     "express": "^4.13.3",
-    "lodash": "^3.10.1",
-    "mongoose": "^4.1.10",
     "morgan": "^1.6.1",
-    "shortid": "^2.2.2"
+    "pg": "^4.5.5",
+    "sequelize": "^3.23.1"
   },
   "devDependencies": {
     "chance": "^0.8.0",

@@ -1,38 +1,29 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-	shortid = require('shortid'),
-	_ = require('lodash');
+var Sequelize = require('sequelize');
 
-var db = require('../../db');
-var Story = require('../stories/story.model');
+var db = require('../../_db');
 
-var User = new mongoose.Schema({
-	_id: {
-		type: String,
-		unique: true,
-		default: shortid.generate
-	},
-	name: String,
-	photo: {
-		type: String,
-		default: '/images/default-photo.jpg'
-	},
-	phone: String,
-	email: {
-		type: String,
-		required: true,
-		unique: true
-	},
-	password: String,
-	isAdmin: {
-		type: Boolean,
-		default: false
-	}
+var User = db.define('user', {
+  name: Sequelize.STRING,
+  photo: {
+    type: Sequelize.STRING,
+    defaultValue: '/images/default-photo.jpg'
+  },
+  phone: Sequelize.STRING,
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isEmail: true
+    }
+  },
+  password: Sequelize.STRING,
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
 });
 
-User.methods.getStories = function () {
-	return Story.find({author: this._id}).exec();
-};
-
-module.exports = db.model('User', User);
+module.exports = User;

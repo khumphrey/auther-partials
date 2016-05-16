@@ -1,19 +1,11 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var Promise = require('bluebird'); 
-Promise.promisifyAll(mongoose);
+var db = require('./_db');
 
-var databaseURI = 'mongodb://localhost:27017/auther';
+var Story = require('./api/stories/story.model');
+var User = require('./api/users/user.model');
 
-var db = mongoose.connect(databaseURI).connection;
-
-db.on('open', function () {
-	console.log('Database connection successfully opened');
-});
-
-db.on('error', function (err) {
-	console.error('Database connection error', err);
-});
+User.hasMany(Story, {foreignKey: 'author_id'});
+Story.belongsTo(User, {as: 'author'});
 
 module.exports = db;
