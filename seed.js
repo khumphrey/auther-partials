@@ -69,7 +69,7 @@ function generateUsers () {
   var users = doTimes(numUsers, randUser);
   users.push(User.build({
     name: 'Zeke Nierenberg',
-    photo: 'https://learndotresources.s3.amazonaws.com/workshop/55e5c92fe859dc0300619bc8/zeke-astronaut.png',
+    photo: 'http://learndotresources.s3.amazonaws.com/workshop/55e5c92fe859dc0300619bc8/zeke-astronaut.png',
     phone: '(510) 295-5523',
     email: 'zeke@zeke.zeke',
     password: '123',
@@ -77,7 +77,7 @@ function generateUsers () {
   }));
   users.push(User.build({
     name: 'Omri Bernstein',
-    photo: 'https://learndotresources.s3.amazonaws.com/workshop/55e5c92fe859dc0300619bc8/sloth.jpg',
+    photo: 'http://learndotresources.s3.amazonaws.com/workshop/55e5c92fe859dc0300619bc8/sloth.jpg',
     phone: '(781) 854-8854',
     email: 'omri@zeke.zeke',
     password: '123'
