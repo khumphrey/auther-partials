@@ -120,6 +120,7 @@ db.sync({force: true})
   console.error('Error while seeding');
   console.error(err.stack);
 })
-.then(function () {
-  process.exit();
+.finally(function () {
+  db.close();
+  return null;
 });
