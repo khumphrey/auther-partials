@@ -18,6 +18,7 @@
     "bluebird": "^2.10.2",
     "bootstrap": "^3.3.7",
     "bootstrap-social": "^5.0.0",
+    "cartoon-avatar": "^1.0.2",
     "express": "^4.13.3",
     "jquery": "^3.1.0",
     "pg": "^4.5.5",
