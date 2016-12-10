@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack -w & nodemon --watch server -e js,html server/index.js",
     "seed": "node seed",
-    "db-init": "./db-init.sh",
+    "db-init": "pg-init auther",
     "postinstall": "npm run db-init"
   },
   "author": "",
@@ -23,6 +23,7 @@
     "bootstrap-social": "^5.0.0",
     "express": "^4.13.3",
     "font-awesome": "^4.6.3",
+    "fs-misc": "^2.0.0",
     "jquery": "^3.1.0",
     "lodash": "^4.16.4",
     "pg": "^4.5.5",

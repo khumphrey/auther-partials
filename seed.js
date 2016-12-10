@@ -112,8 +112,11 @@ function seed () {
   });
 }
 
+console.log('Syncing database');
+
 db.sync({force: true})
 .then(function () {
+  console.log('Seeding database');
   return seed();
 })
 .then(function () {
