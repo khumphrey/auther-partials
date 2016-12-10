@@ -3,9 +3,14 @@
 var app = require('express')();
 var path = require('path');
 
+// "Enhancing" middleware (does not send response, server-side effects only)
+
 app.use(require('./logging.middleware'));
 
 app.use(require('./body-parsing.middleware'));
+
+
+// "Responding" middleware (may send a response back to client)
 
 app.use('/api', require('../api/api.router'));
 
