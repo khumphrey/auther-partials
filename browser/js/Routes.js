@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from'react-redux';
+import { connect } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import Root from './components/Root';
 import Home from './components/Home';
