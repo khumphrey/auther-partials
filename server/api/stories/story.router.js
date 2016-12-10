@@ -12,14 +12,14 @@ router.param('id', function (req, res, next, id) {
     if (!story) throw HttpError(404);
     req.story = story;
     next();
+    return null;
   })
   .catch(next);
 });
 
 router.get('/', function (req, res, next) {
   Story.findAll({
-    include: [{model: User, as: 'author'}],
-    attributes: {exclude: ['paragraphs']}
+    include: [{model: User, as: 'author'}]
   })
   .then(function (stories) {
     res.json(stories);
@@ -32,8 +32,8 @@ router.post('/', function (req, res, next) {
   .then(function (story) {
     return story.reload({include: [{model: User, as: 'author'}]});
   })
-  .then(function (includingAuthor) {
-    res.status(201).json(includingAuthor);
+  .then(function (storyIncludingAuthor) {
+    res.status(201).json(storyIncludingAuthor);
   })
   .catch(next);
 });
@@ -49,7 +49,10 @@ router.get('/:id', function (req, res, next) {
 router.put('/:id', function (req, res, next) {
   req.story.update(req.body)
   .then(function (story) {
-    res.json(story);
+    return story.reload({include: [{model: User, as: 'author'}]});
+  })
+  .then(function (storyIncludingAuthor) {
+    res.json(storyIncludingAuthor);
   })
   .catch(next);
 });

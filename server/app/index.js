@@ -10,7 +10,7 @@ app.use(require('./request-state.middleware'));
 app.use('/api', require('../api/api.router'));
 
 var validFrontendRoutes = ['/', '/stories', '/users', '/stories/:id', '/users/:id', '/signup', '/login'];
-var indexPath = path.join(__dirname, '..', '..', 'public', 'index.html');
+var indexPath = path.join(__dirname, '..', '..', 'browser', 'index.html');
 validFrontendRoutes.forEach(function (stateRoute) {
   app.get(stateRoute, function (req, res) {
     res.sendFile(indexPath);

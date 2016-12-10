@@ -12,6 +12,7 @@ router.param('id', function (req, res, next, id) {
     if (!user) throw HttpError(404);
     req.requestedUser = user;
     next();
+    return null;
   })
   .catch(next);
 });
@@ -33,7 +34,12 @@ router.post('/', function (req, res, next) {
 });
 
 router.get('/:id', function (req, res, next) {
-  req.requestedUser.reload({include: [Story]})
+  req.requestedUser.reload({
+    include: [{
+      model: Story,
+      attributes: {exclude: ['paragraphs']}
+    }]
+  })
   .then(function (requestedUser) {
     res.json(requestedUser);
   })
