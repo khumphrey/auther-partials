@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from'react-redux';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { removeStory } from '../../redux/stories'; 
+import { removeStory } from '../../redux/stories';
 
 
 /* -----------------    COMPONENT     ------------------ */
@@ -11,7 +11,7 @@ class StoryItem extends React.Component {
     const { story, removeStory } = this.props;
 
     return (
-      <li className="list-group-item story-item">       
+      <li className="list-group-item story-item">
         <ul className="list-inline">
           <li>
             <Link className="large-font" to={`/stories/${story.id}`}>{story.title}</Link>
@@ -23,7 +23,7 @@ class StoryItem extends React.Component {
             <Link to={`/users/${story.author_id}`}>{story.author.name}</Link>
           </li>
         </ul>
-        <button className="btn btn-default btn-xs" 
+        <button className="btn btn-default btn-xs"
                 onClick={ () => removeStory(story.id) }>
           <span className="glyphicon glyphicon-remove"></span>
         </button>

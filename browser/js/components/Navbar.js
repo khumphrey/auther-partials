@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from'react-redux';
+import { connect } from 'react-redux';
 import { Link, browserHistory } from 'react-router';
 
 /* -----------------    COMPONENT     ------------------ */
@@ -75,9 +75,9 @@ const mapProps = null;
 
 const mapDispatch = dispatch => ({
   logout: () => {
-    console.log('You signed out. Sorta.')
+    console.log('You signed out. Sorta.');
     browserHistory.push('/');
   }
-})
+});
 
 export default connect(mapProps, mapDispatch)(Navbar);

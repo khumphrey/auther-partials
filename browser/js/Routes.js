@@ -36,10 +36,10 @@ const mapProps = null;
 
 const mapDispatch = dispatch => ({
  fetchInitialData: () => {
-    dispatch(fetchUsers())
-    dispatch(fetchStories())
+    dispatch(fetchUsers());
+    dispatch(fetchStories());
     // what other data might we want to fetch on app load?
   }
-})
+});
 
 export default connect(mapProps, mapDispatch)(Routes);

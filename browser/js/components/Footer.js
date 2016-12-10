@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default () => (
+const Footer = () => (
   <div className="footer text-center">
     <div className="vcenter muted">
       <span>
@@ -10,3 +10,4 @@ export default () => (
   </div>
 );
 
+export default Footer;
