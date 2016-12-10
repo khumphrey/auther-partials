@@ -5,7 +5,7 @@ var path = require('path');
 
 app.use(require('./logging.middleware'));
 
-app.use(require('./request-state.middleware'));
+app.use(require('./body-parsing.middleware'));
 
 app.use('/api', require('../api/api.router'));
 
