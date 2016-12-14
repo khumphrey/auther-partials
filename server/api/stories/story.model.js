@@ -1,4 +1,4 @@
-'use strict'; 
+'use strict';
 
 var Sequelize = require('sequelize');
 
@@ -11,6 +11,15 @@ var Story = db.define('story', {
     unique: true
   },
   paragraphs: Sequelize.ARRAY(Sequelize.TEXT)
+}, {
+  scopes: {
+    populated: () => ({
+      include: [{
+        model: db.model('user'),
+        as: 'author'
+      }]
+    })
+  }
 });
 
 module.exports = Story;

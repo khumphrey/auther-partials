@@ -18,9 +18,7 @@ router.param('id', function (req, res, next, id) {
 });
 
 router.get('/', function (req, res, next) {
-  Story.findAll({
-    include: [{model: User, as: 'author'}]
-  })
+  Story.scope('populated').findAll()
   .then(function (stories) {
     res.json(stories);
   })
@@ -30,7 +28,7 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
   Story.create(req.body)
   .then(function (story) {
-    return story.reload({include: [{model: User, as: 'author'}]});
+    return story.reload(Story.options.scopes.populated());
   })
   .then(function (storyIncludingAuthor) {
     res.status(201).json(storyIncludingAuthor);
@@ -39,7 +37,7 @@ router.post('/', function (req, res, next) {
 });
 
 router.get('/:id', function (req, res, next) {
-  req.story.reload({include: [{model: User, as: 'author'}]})
+  req.story.reload(Story.options.scopes.populated())
   .then(function (story) {
     res.json(story);
   })
@@ -49,7 +47,7 @@ router.get('/:id', function (req, res, next) {
 router.put('/:id', function (req, res, next) {
   req.story.update(req.body)
   .then(function (story) {
-    return story.reload({include: [{model: User, as: 'author'}]});
+    return story.reload(Story.options.scopes.populated());
   })
   .then(function (storyIncludingAuthor) {
     res.json(storyIncludingAuthor);

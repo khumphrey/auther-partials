@@ -34,12 +34,7 @@ router.post('/', function (req, res, next) {
 });
 
 router.get('/:id', function (req, res, next) {
-  req.requestedUser.reload({
-    include: [{
-      model: Story,
-      attributes: {exclude: ['paragraphs']}
-    }]
-  })
+  req.requestedUser.reload(User.options.scopes.populated())
   .then(function (requestedUser) {
     res.json(requestedUser);
   })

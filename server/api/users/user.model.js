@@ -21,6 +21,15 @@ var User = db.define('user', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   }
+}, {
+  scopes: {
+    populated: () => ({
+      include: [{
+        model: db.model('story'),
+        attributes: {exclude: ['paragraphs']}
+      }]
+    })
+  }
 });
 
 module.exports = User;
