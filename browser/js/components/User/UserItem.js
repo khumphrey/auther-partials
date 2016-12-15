@@ -50,9 +50,6 @@ class UserItem extends React.Component {
     const { removeUser, removeStory, user, stories } = this.props;
     event.stopPropagation();
     removeUser(user.id);
-    stories
-    .filter(story => story.author_id === user.id)
-    .forEach(story => removeStory(story.id));
   }
 }
 

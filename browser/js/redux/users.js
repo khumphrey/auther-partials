@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const INITIALIZE = 'INITIALIZE_USERS'
 const CREATE     = 'CREATE_USER'
-const REMOVE     = 'REMOVE_USER'
+export const REMOVE = 'REMOVE_USER'
 const UPDATE     = 'UPDATE_USER'
 
 
@@ -20,8 +20,8 @@ const update = user  => ({ type: UPDATE, user })
 
 export default function reducer (users = [], action) {
   switch (action.type) {
-    
-    case INITIALIZE: 
+
+    case INITIALIZE:
       return action.users
 
     case CREATE:
@@ -31,13 +31,13 @@ export default function reducer (users = [], action) {
       return users
         .filter(user => user.id !== action.id)
 
-    
+
     case UPDATE:
       return users
         .map(user => (
           action.user.id === user.id ? action.user : user))
 
-    default: 
+    default:
       return users;
   }
 }

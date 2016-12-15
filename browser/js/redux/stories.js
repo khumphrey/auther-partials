@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { REMOVE as REMOVE_USER } from './users';
 
 /* -----------------    ACTIONS     ------------------ */
 
@@ -30,6 +31,10 @@ export default function reducer (stories = [], action) {
     case REMOVE:
       return stories
         .filter(story => story.id !== action.id)
+
+    case REMOVE_USER:
+      return stories
+        .filter(story => story.author_id !== action.id)
 
     case UPDATE:
       return stories
