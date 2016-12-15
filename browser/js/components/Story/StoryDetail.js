@@ -11,18 +11,25 @@ class StoryDetail extends React.Component {
     super(props);
 
     this.state = {
-      title: '',
-      author_id: '',
-      paragraphs: [],
+      story: {
+        title: '',
+        author_id: '',
+        paragraphs: [],
+      }
     };
     this.onStoryUpdate = this.onStoryUpdate.bind(this);
     this.renderRawHTML = this.renderRawHTML.bind(this);
   }
 
+  componentWillReceiveProps (newProps, oldProps) {
+    this.setState({
+      story: newProps.story
+    });
+  }
+
   render() {
-    const {users, story} = this.props;
-    // const story = this.props.story;
-    console.log('story', story)
+    const {users} = this.props;
+    const story = this.state.story;
     if (!story) return <div></div>; // the story id is invalid or the data isnt loaded yet
     return (
       <div className="container story-container">
@@ -58,8 +65,8 @@ class StoryDetail extends React.Component {
   }
 
   renderRawHTML() {
-    const { story } = this.props;
-    const { paragraphs } = this.state;
+    const { story } = this.state;
+    const { paragraphs } = story;
 
     let storyHTML = '';
 
@@ -74,12 +81,16 @@ class StoryDetail extends React.Component {
   }
 
   onStoryUpdate(storyUpdateObj) {
-    const {story, updateStory} = this.props;
+    const {debouncedUpdateStory} = this.props;
+    const {story} = this.state;
     // this is probably pretty fragile
     if (storyUpdateObj.paragraphs) {
       storyUpdateObj.paragraphs = storyUpdateObj.paragraphs.split('<br><br>');
     }
-    updateStory(story.id, storyUpdateObj);
+    this.setState({
+      story: Object.assign(story, storyUpdateObj)
+    });
+    debouncedUpdateStory(story.id, storyUpdateObj);
   }
 }
 
@@ -88,10 +99,15 @@ class StoryDetail extends React.Component {
 
 const mapState = ({ users, currentStory }, ownProps) => {
   const story = currentStory;
-  console.log('mapping state', story)
   return { story, users };
 };
 
-const mapDispatch = { updateStory };
+const mapDispatch = (dispatch) => {
+  return {
+    debouncedUpdateStory: _.debounce((...args) => {
+      dispatch(updateStory(...args));
+    }, 500)
+  };
+};
 
 export default connect(mapState, mapDispatch)(StoryDetail);

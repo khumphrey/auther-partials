@@ -91,7 +91,6 @@ export const addStory = story => dispatch => {
 }
 
 export const updateStory = (id, story) => dispatch => {
-    dispatch(update(story));
     axios.put(`/api/stories/${id}`, story)
          .then(res => dispatch(update(res.data)))
          .catch(err => console.error(`Updating story: ${story} unsuccessful`, err))
