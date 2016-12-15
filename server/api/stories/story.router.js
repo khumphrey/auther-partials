@@ -18,7 +18,9 @@ router.param('id', function (req, res, next, id) {
 });
 
 router.get('/', function (req, res, next) {
-  Story.scope('populated').findAll()
+  Story.scope('populated').findAll({
+    attributes: { exclude: ['paragraphs'] }
+  })
   .then(function (stories) {
     res.json(stories);
   })

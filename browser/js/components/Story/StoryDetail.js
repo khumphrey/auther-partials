@@ -21,6 +21,8 @@ class StoryDetail extends React.Component {
 
   render() {
     const {users, story} = this.props;
+    // const story = this.props.story;
+    console.log('story', story)
     if (!story) return <div></div>; // the story id is invalid or the data isnt loaded yet
     return (
       <div className="container story-container">
@@ -28,14 +30,14 @@ class StoryDetail extends React.Component {
           <li>
             <input
               className="form-like large-font"
-              defaultValue={story.title}
+              value={story.title}
               onChange={evt => this.onStoryUpdate({ title: evt.target.value })}
             />
           </li>
           <li><span className="muted">by</span></li>
           <li>
             <select
-              defaultValue={story.author_id}
+              value={story.author_id}
               onChange={evt => this.onStoryUpdate({ author_id: evt.target.value })}>
             {
               users.map((user, index) => (
@@ -77,7 +79,6 @@ class StoryDetail extends React.Component {
     if (storyUpdateObj.paragraphs) {
       storyUpdateObj.paragraphs = storyUpdateObj.paragraphs.split('<br><br>');
     }
-    this.setState(storyUpdateObj);
     updateStory(story.id, storyUpdateObj);
   }
 }
@@ -85,10 +86,9 @@ class StoryDetail extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = ({ stories, users }, ownProps) => {
-  const id = Number(ownProps.params.id);
-  const story = _.find(stories, aStory => aStory.id === id);
-
+const mapState = ({ users, currentStory }, ownProps) => {
+  const story = currentStory;
+  console.log('mapping state', story)
   return { story, users };
 };
 

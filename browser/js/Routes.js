@@ -10,12 +10,11 @@ import UserDetail from './components/User/UserDetail';
 import StoryList from './components/Story/StoryList';
 import StoryDetail from './components/Story/StoryDetail';
 import { fetchUsers } from './redux/users';
-import { fetchStories } from './redux/stories';
+import { fetchStories, fetchStory } from './redux/stories';
 
 /* -----------------    COMPONENT     ------------------ */
 
-
-const Routes = ({ fetchInitialData }) => (
+const Routes = ({ fetchInitialData, onStoryEnter }) => (
   <Router history={browserHistory}>
     <Route path="/" component={Root} onEnter={fetchInitialData}>
       <IndexRoute component={Home} />
@@ -24,7 +23,7 @@ const Routes = ({ fetchInitialData }) => (
       <Route path="users" component={UserList} />
       <Route path="users/:id" component={UserDetail} />
       <Route path="stories" component={StoryList} />
-      <Route path="stories/:id" component={StoryDetail} />
+      <Route path="stories/:id" component={StoryDetail} onEnter={onStoryEnter} />
       <Route path="*" component={Home} />
     </Route>
   </Router>
@@ -35,10 +34,14 @@ const Routes = ({ fetchInitialData }) => (
 const mapProps = null;
 
 const mapDispatch = dispatch => ({
- fetchInitialData: () => {
+  fetchInitialData: () => {
     dispatch(fetchUsers());
     dispatch(fetchStories());
     // what other data might we want to fetch on app load?
+  },
+  onStoryEnter: (nextRouterState) => {
+    const storyId = nextRouterState.params.id;
+    dispatch(fetchStory(storyId));
   }
 });
 
