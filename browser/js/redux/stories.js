@@ -51,7 +51,8 @@ export function currentStory (
   story = {
     title: '',
     paragraphs: [],
-    author_id: ''
+    author_id: '',
+    author: {}
   },
   action
 ) {

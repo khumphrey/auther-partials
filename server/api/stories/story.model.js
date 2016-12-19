@@ -10,7 +10,10 @@ var Story = db.define('story', {
     allowNull: false,
     unique: true
   },
-  paragraphs: Sequelize.ARRAY(Sequelize.TEXT)
+  paragraphs: {
+    type: Sequelize.ARRAY(Sequelize.TEXT),
+    defaultValue: []
+  }
 }, {
   scopes: {
     populated: () => ({
