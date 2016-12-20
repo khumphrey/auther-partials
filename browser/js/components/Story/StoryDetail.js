@@ -67,14 +67,10 @@ class StoryDetail extends React.Component {
 
   renderRawHTML() {
     const { story } = this.state;
-    const { paragraphs } = story;
 
     let storyHTML = '';
 
-    if (paragraphs.length) {
-      storyHTML = paragraphs.join('<br><br>');
-    }
-    else if (story && story.paragraphs && story.paragraphs.length) {
+    if (story && story.paragraphs && story.paragraphs.length) {
       storyHTML = story.paragraphs.join('<br><br>');
     }
 
