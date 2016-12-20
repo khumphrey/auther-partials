@@ -7,7 +7,6 @@ const INITIALIZE = 'INITIALIZE_STORIES'
 const CREATE     = 'CREATE_STORY'
 const UPDATE     = 'UPDATE_STORY'
 const REMOVE     = 'REMOVE_STORY'
-const READ       = 'READ_STORY'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -15,7 +14,6 @@ const init   = stories => ({ type: INITIALIZE, stories })
 const create = story   => ({ type: CREATE, story })
 const remove = id      => ({ type: REMOVE, id })
 const update = story   => ({ type: UPDATE, story })
-const read   = story   => ({ type: READ, story })
 
 /* ------------       REDUCERS     ------------------ */
 
@@ -47,28 +45,6 @@ export default function reducer (stories = [], action) {
   }
 }
 
-export function currentStory (
-  story = {
-    title: '',
-    paragraphs: [],
-    author_id: '',
-    author: {}
-  },
-  action
-) {
-  switch (action.type) {
-
-    case READ:
-      return action.story
-
-    case UPDATE:
-      return action.story.id === story.id ? action.story : story
-
-    default:
-      return story
-  }
-}
-
 /* ------------       DISPATCHERS     ------------------ */
 
 export const fetchStories = () => dispatch => {
@@ -79,7 +55,7 @@ export const fetchStories = () => dispatch => {
 
 export const fetchStory = (id) => dispatch => {
     axios.get(`/api/stories/${id}`)
-         .then(res => dispatch(read(res.data)))
+         .then(res => dispatch(update(res.data)))
          .catch(err => console.error('Fetching story unsuccessful', err))
 }
 

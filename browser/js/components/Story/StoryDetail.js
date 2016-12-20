@@ -94,8 +94,9 @@ class StoryDetail extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = ({ users, currentStory }, ownProps) => {
-  const story = currentStory;
+const mapState = ({ users, stories }, ownProps) => {
+  const story = stories.find(story => story.id === +ownProps.params.id);
+  console.log('story', story);
   return { story, users };
 };
 
