@@ -15,6 +15,7 @@ class StoryDetail extends React.Component {
         title: '',
         author_id: '',
         paragraphs: [],
+        author: {}
       }
     };
     this.onStoryUpdate = this.onStoryUpdate.bind(this);
