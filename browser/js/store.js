@@ -7,5 +7,5 @@ import rootReducer from './redux';
 
 export default createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk, createLogger()))
+  composeWithDevTools(applyMiddleware(thunk, createLogger({ collapsed: true })))
 );
