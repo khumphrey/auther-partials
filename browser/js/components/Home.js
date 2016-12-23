@@ -9,13 +9,13 @@ const Home = () => (
     <div className="about">
       <div className="text-inverted">
         <div className="icon-flexbox container">
-          <span className="glyphicon glyphicon-eye-open"></span>
+          <span className="glyphicon glyphicon-eye-open" />
           <span>+</span>
-          <span className="glyphicon glyphicon-edit"></span>
+          <span className="glyphicon glyphicon-edit" />
           <span>+</span>
-          <span className="glyphicon glyphicon-duplicate"></span>
+          <span className="glyphicon glyphicon-duplicate" />
           <span>=</span>
-          <span className="glyphicon glyphicon-sunglasses"></span>
+          <span className="glyphicon glyphicon-sunglasses" />
         </div>
       </div>
       <div className="inverted">

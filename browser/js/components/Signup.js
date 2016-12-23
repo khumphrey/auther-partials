@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from'react-redux';
+import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
 /* -----------------    COMPONENT     ------------------ */
@@ -45,11 +45,12 @@ class Signup extends React.Component {
         </div>
         <div className="buffer oauth">
           <p>
-            <a target="_self"
-               href="/auth/google"
-               className="btn btn-social btn-google">
-            <i className="fa fa-google"></i>
-            <span>{message} with Google</span>
+            <a
+              target="_self"
+              href="/auth/google"
+              className="btn btn-social btn-google">
+              <i className="fa fa-google" />
+              <span>{message} with Google</span>
             </a>
           </p>
         </div>

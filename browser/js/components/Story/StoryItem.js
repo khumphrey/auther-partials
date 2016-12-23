@@ -23,9 +23,10 @@ class StoryItem extends React.Component {
             <Link to={`/users/${story.author_id}`}>{story.author.name}</Link>
           </li>
         </ul>
-        <button className="btn btn-default btn-xs"
-                onClick={ () => removeStory(story.id) }>
-          <span className="glyphicon glyphicon-remove"></span>
+        <button
+          className="btn btn-default btn-xs"
+          onClick={ () => removeStory(story.id) }>
+          <span className="glyphicon glyphicon-remove" />
         </button>
       </li>
     );
@@ -36,6 +37,6 @@ class StoryItem extends React.Component {
 /* -----------------    CONTAINER     ------------------ */
 
 const mapState = null;
-const mapDispatch = { removeStory }
+const mapDispatch = { removeStory };
 
 export default connect(mapState, mapDispatch)(StoryItem);

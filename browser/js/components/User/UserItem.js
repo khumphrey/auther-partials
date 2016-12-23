@@ -19,11 +19,12 @@ class UserItem extends React.Component {
       <div className="list-group-item min-content user-item">
         <div className="media">
           <div className="media-left media-middle icon-container">
-            <img className="media-object img-circle" src={user.photo}/>
+            <img className="media-object img-circle" src={user.photo} />
           </div>
-          <Link className="media-body"
-                activeClassName="active"
-                to={`/users/${user.id}`}>
+          <Link
+            className="media-body"
+            activeClassName="active"
+            to={`/users/${user.id}`}>
             <h4 className="media-heading tucked">
               <span placeholder="Jean Doe">{user.name}</span>
             </h4>
@@ -38,7 +39,7 @@ class UserItem extends React.Component {
             <button
                 className="btn btn-default"
                 onClick={this.removeUserCallback}>
-              <span className="glyphicon glyphicon-remove"></span>
+              <span className="glyphicon glyphicon-remove" />
             </button>
           </div>
         </div>

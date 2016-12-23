@@ -47,7 +47,7 @@ class UserList extends Component {
       <div className="list-group-item min-content user-item">
         <div className="media">
           <div className="media-left media-middle icon-container">
-            <span className="glyphicon glyphicon-search"></span>
+            <span className="glyphicon glyphicon-search" />
           </div>
           <div className="media-body">
             <h4 className="media-heading tucked">
@@ -98,8 +98,8 @@ class UserList extends Component {
           <div className="media-left media-middle icon-container">
             <button
               type="submit"
-              className="glyphicon glyphicon-plus clickable">
-            </button>
+              className="glyphicon glyphicon-plus clickable"
+            />
           </div>
           <div className="media-body">
             <h4 className="media-heading tucked">
