@@ -1,3 +1,4 @@
+/* eslint-disable no-multi-spaces */
 import axios from 'axios';
 import { REMOVE as REMOVE_USER } from './users';
 

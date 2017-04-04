@@ -29,7 +29,7 @@ class StoryDetail extends React.Component {
   }
 
   render() {
-    const {users} = this.props;
+    const { users } = this.props;
     const story = this.state.story;
     if (!story) return <div />; // the story id is invalid or the data isnt loaded yet
     return (
@@ -78,8 +78,8 @@ class StoryDetail extends React.Component {
   }
 
   onStoryUpdate(storyUpdateObj) {
-    const {debouncedUpdateStory} = this.props;
-    const {story} = this.state;
+    const { debouncedUpdateStory } = this.props;
+    const { story } = this.state;
     // this is probably pretty fragile
     if (storyUpdateObj.paragraphs) {
       storyUpdateObj.paragraphs = storyUpdateObj.paragraphs.split('<br><br>');
