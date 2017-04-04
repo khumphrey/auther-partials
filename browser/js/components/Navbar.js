@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, browserHistory } from 'react-router';
 
-import { logoutUser } from '../redux/auth';
-
 /* -----------------    COMPONENT     ------------------ */
 
 class Navbar extends React.Component {
@@ -47,31 +45,25 @@ class Navbar extends React.Component {
   }
 
   renderLoginSignup() {
-    const loginSignup = this.props.auth
-                          ? null
-                          : (
-                            <ul className="nav navbar-nav navbar-right">
-                              <li>
-                               <Link to="/signup" activeClassName="active">signup</Link>
-                              </li>
-                              <li>
-                                <Link to="/login" activeClassName="active">login</Link>
-                              </li>
-                            </ul>
-                          );
-    return loginSignup;
+    return (
+      <ul className="nav navbar-nav navbar-right">
+        <li>
+         <Link to="/signup" activeClassName="active">signup</Link>
+        </li>
+        <li>
+          <Link to="/login" activeClassName="active">login</Link>
+        </li>
+      </ul>
+    );
   }
 
   renderLogout() {
-    const loggedIn = !this.props.auth;
     return (
       <ul className="nav navbar-nav navbar-right">
         <li>
         <button
           className="navbar-btn btn btn-default"
-          onClick={this.props.logout}
-          disabled={loggedIn}
-        >
+          onClick={this.props.logout}>
           logout
         </button>
         </li>
@@ -82,11 +74,11 @@ class Navbar extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapProps = ({ auth }) => ({ auth });
+const mapProps = null;
 
 const mapDispatch = dispatch => ({
   logout: () => {
-    dispatch(logoutUser());
+    console.log('You signed out. Sorta.');
     browserHistory.push('/');
   }
 });
