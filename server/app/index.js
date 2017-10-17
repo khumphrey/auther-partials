@@ -23,6 +23,8 @@ app.use('/api', (req, res, next) => {
 	next();
 })
 
+app.use(require('./passport.middleware')); // this has to be AFTER express-session
+
 // "Responding" middleware (may send a response back to client)
 
 app.use('/api', require('../api/api.router'));
