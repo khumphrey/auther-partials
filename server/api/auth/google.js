@@ -34,9 +34,6 @@ passport.use(
 router.get('/', passport.authenticate('google', { scope: 'email' }));
 
 // handle the callback after Google has authenticated the user
-router.get('/verify', passport.authenticate('google', {
-  failureRedirect: '/login',
-  successRedirect: '/login'
-}));
+router.get('/verify', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => res.redirect(`/users/${req.user.id}`));
 
 module.exports = router;

@@ -2,6 +2,9 @@ const router = require('express').Router();
 const User = require('../../db').models.user;
 const HttpError = require('../../utils/HttpError');
 
+// This now marries the original auth code we wrote to Passport.
+// An alternative would be to use the "local strategy" option with Passport.
+
 // login, i.e. 'you remember `me`, right?'
 router.put('/', function(req, res, next) {
   const { email, password } = req.body;
@@ -12,8 +15,10 @@ router.put('/', function(req, res, next) {
       if (!user) {
         throw new HttpError(401);
       } else {
-        req.session.userId = user.id;
-        res.json(user);
+        req.logIn(user, err => {
+          if (err) throw new HttpError(500, err.message);
+          res.json(user);
+        })
       }
     })
     .catch(next);
@@ -28,8 +33,10 @@ router.post('/', function (req, res, next) {
   })
   .spread((user, created) => {
     if (created) {
-      req.session.userId = user.id;
-      res.json(user);
+      req.logIn(user, err => {
+        if (err) throw new HttpError(500, err.message);
+        res.json(user);
+      })
     } else {
       throw new HttpError(401);
     }
@@ -38,16 +45,14 @@ router.post('/', function (req, res, next) {
 
 // logout, i.e. "please just forget `me`"
 router.delete('/', function (req, res, next) {
-  req.session.destroy(); // destroys entire session
+  req.logOut()
+  // req.session.destroy(); // destroys entire session
   // delete req.session.userId; // deletes one item on session
   res.sendStatus(204);
 });
 
-
 router.get('/', function (req, res, next) {
-  User.findById(req.session.userId)
-    .then(user => res.json(user))
-    .catch(next);
+  res.json(req.user);
 });
 
 module.exports = router;
