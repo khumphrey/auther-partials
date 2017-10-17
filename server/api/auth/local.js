@@ -36,4 +36,10 @@ router.post('/', function (req, res, next) {
   });
 });
 
+// logout, i.e. "please just forget `me`"
+router.delete('/', function (req, res, next) {
+  req.session.destroy(); // destroys entire session
+  // delete req.session.userId; // deletes one item on session
+  res.sendStatus(204);
+});
 module.exports = router;

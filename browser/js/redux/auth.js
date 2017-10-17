@@ -4,10 +4,12 @@ import { create as createUser } from './users';
 /* ------------------    ACTIONS    --------------------- */
 
 const SET = 'SET_CURRENT_USER';
+const REMOVE = 'REMOVE_CURRENT_USER';
 
 /* --------------    ACTION CREATORS    ----------------- */
 
 const set = user => ({ type: SET, user });
+const remove = () => ({ type: REMOVE });
 
 /* ------------------    REDUCER    --------------------- */
 
@@ -16,7 +18,8 @@ export default function reducer (currentUser = null, action) {
 
     case SET:
       return action.user;
-
+    case REMOVE:
+    	return null;
     default:
       return currentUser;
   }
@@ -64,3 +67,12 @@ axios.post('/api/auth/me', credentials)
   })
   .catch(err => console.error('Problem signing up:', err));
 };
+
+export const logout = history => dispatch => {
+	axios.delete('/api/auth/me')
+		.then(() => {
+			dispatch(remove());
+			history.push('/');
+		})
+		.catch(err => console.error('logout unsuccessful', err))
+}
