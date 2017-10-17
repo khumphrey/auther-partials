@@ -11,7 +11,7 @@ const UPDATE     = 'UPDATE_USER';
 /* ------------   ACTION CREATORS     ------------------ */
 
 const init  = users => ({ type: INITIALIZE, users });
-const create = user  => ({ type: CREATE, user });
+export const create = user  => ({ type: CREATE, user });
 const remove = id    => ({ type: REMOVE, id });
 const update = user  => ({ type: UPDATE, user });
 

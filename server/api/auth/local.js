@@ -19,4 +19,21 @@ router.put('/', function(req, res, next) {
     .catch(next);
 });
 
+// signup, i.e. "let `me` introduce myself"
+router.post('/', function (req, res, next) {
+  const { email, password } = req.body;
+  User.findOrCreate({
+    where: { email },
+    defaults: { password }
+  })
+  .spread((user, created) => {
+    if (created) {
+      req.session.userId = user.id;
+      res.json(user);
+    } else {
+      throw new HttpError(401);
+    }
+  });
+});
+
 module.exports = router;

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { create as createUser } from './users';
 
 /* ------------------    ACTIONS    --------------------- */
 
@@ -51,4 +52,15 @@ export const loginAndGoToUser = (credentials, history) => dispatch => {
   dispatch(login(credentials))
   .then(user => history.push(`/users/${user.id}`))
   .catch(err => console.error('Problem logging in:', err));
+};
+
+export const signupAndGoToUser = (credentials, history) => dispatch => {
+axios.post('/api/auth/me', credentials)
+  .then(resToData)
+  .then(user => {
+    dispatch(createUser(user)); // so new user appears in our master list
+    dispatch(set(user)); // set current user
+    history.push(`/users/${user.id}`); // send us to this frontend view
+  })
+  .catch(err => console.error('Problem signing up:', err));
 };
