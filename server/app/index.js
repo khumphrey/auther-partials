@@ -17,13 +17,14 @@ app.use(session({
 	saveUninitialized: true
 }))
 
+app.use(require('./passport.middleware')); // this has to be AFTER express-session
+
 app.use('/api', (req, res, next) => {
 	if (!req.session.counter) req.session.counter = 0;
 	console.log('counter', ++req.session.counter);
+	console.log('passport user', req.user && req.user.name);
 	next();
 })
-
-app.use(require('./passport.middleware')); // this has to be AFTER express-session
 
 // "Responding" middleware (may send a response back to client)
 

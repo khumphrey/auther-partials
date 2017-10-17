@@ -24,7 +24,7 @@ passport.use(
       defaults: info
     })
     .spread(user => {
-      done(null, user); // this passes user info on to serializeUser (to be defined!)
+      done(null, user); // this passes user info on to serializeUser (in passport.middleware.js)
     })
     .catch(done);
   })
