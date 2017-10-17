@@ -76,3 +76,10 @@ export const logout = history => dispatch => {
 		})
 		.catch(err => console.error('logout unsuccessful', err))
 }
+
+export const retrieveLoggedInUser = () => dispatch => {
+  axios.get('/api/auth/me')
+	  .then(resToData)
+	  .then(user => dispatch(set(user)))
+	  .catch(err => console.error('Problem fetching current user', err));
+};

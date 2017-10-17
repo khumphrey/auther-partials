@@ -42,4 +42,12 @@ router.delete('/', function (req, res, next) {
   // delete req.session.userId; // deletes one item on session
   res.sendStatus(204);
 });
+
+
+router.get('/', function (req, res, next) {
+  User.findById(req.session.userId)
+    .then(user => res.json(user))
+    .catch(next);
+});
+
 module.exports = router;
